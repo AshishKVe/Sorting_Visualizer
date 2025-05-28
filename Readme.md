@@ -78,7 +78,7 @@ A beautiful, interactive sorting algorithm visualizer built with React and TypeS
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/sortsavvy-visualizer.git
+   git clone https://github.com/yash-8923/sort-savvy.git
    ```
 
 2. Install dependencies:
