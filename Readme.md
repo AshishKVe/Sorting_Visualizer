@@ -1,8 +1,8 @@
-# SortSavvy Visualizer 🚀
+# Sorting Visualizer 🚀
 
 A beautiful, interactive sorting algorithm visualizer built with React and TypeScript that helps you understand how different sorting algorithms work through stunning animations and real-time code tracing.
 
-![SortSavvy Visualizer](output.png)
+![Sorting Visualizer](output.png)
 
 ## ✨ Key Features
 
