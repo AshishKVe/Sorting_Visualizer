@@ -1,5 +1,3 @@
-import { AnimationStep, ArrayBar } from '../../types';
-
 export const insertionSortDescription = `
 Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. 
 It works by iterating through the array and for each element, it "inserts" that element into its 
@@ -26,14 +24,14 @@ export const insertionSortRealWorldUse = [
   'When additional space is at a premium'
 ];
 
-export const generateInsertionSortSteps = (inputArray: number[]): AnimationStep[] => {
-  const steps: AnimationStep[] = [];
-  const array = inputArray.map(value => ({ 
-    value, 
-    isComparing: false, 
-    isSwapping: false 
+export const generateInsertionSortSteps = (inputArray) => {
+  const steps = [];
+  const array = inputArray.map(value => ({
+    value,
+    isComparing: false,
+    isSwapping: false
   }));
-  
+
   // Initial state
   steps.push({
     array: JSON.parse(JSON.stringify(array)),
@@ -44,7 +42,7 @@ export const generateInsertionSortSteps = (inputArray: number[]): AnimationStep[
   // Perform insertion sort
   for (let i = 1; i < array.length; i++) {
     let j = i;
-    
+
     // Mark current element being inserted
     array[i].isComparing = true;
     steps.push({
@@ -52,52 +50,52 @@ export const generateInsertionSortSteps = (inputArray: number[]): AnimationStep[
       description: `Inserting element ${array[i].value}`,
       type: "comparison"
     });
-    
+
     while (j > 0 && array[j - 1].value > array[j].value) {
       // Mark elements being compared
       array[j].isComparing = true;
       array[j - 1].isComparing = true;
-      
+
       steps.push({
         array: JSON.parse(JSON.stringify(array)),
         description: `Comparing ${array[j].value} with ${array[j - 1].value}`,
         type: "comparison"
       });
-      
+
       // Mark elements being swapped
       array[j].isSwapping = true;
       array[j - 1].isSwapping = true;
-      
+
       steps.push({
         array: JSON.parse(JSON.stringify(array)),
         description: `Swapping ${array[j].value} and ${array[j - 1].value}`,
         type: "swap"
       });
-      
+
       // Perform swap
       const temp = array[j].value;
       array[j].value = array[j - 1].value;
       array[j - 1].value = temp;
-      
+
       // Reset swap highlights
       array[j].isSwapping = false;
       array[j - 1].isSwapping = false;
       array[j].isComparing = false;
       array[j - 1].isComparing = false;
-      
+
       j--;
     }
-    
+
     // Reset comparison highlight for current element
     array[i].isComparing = false;
   }
-  
+
   // Final state - mark as complete
   steps.push({
     array: JSON.parse(JSON.stringify(array)),
     description: "Array is now sorted!",
     type: "complete"
   });
-  
+
   return steps;
 };

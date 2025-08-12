@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -22,31 +22,31 @@ ChartJS.register(
   ChartDataLabels
 );
 
-const VisualizationChart: React.FC = () => {
+const VisualizationChart = () => {
   const { animationSteps, currentStepIndex } = useVisualizer();
-  const chartRef = useRef<ChartJS<'bar'>>(null);
-  
-  const currentStep = animationSteps[currentStepIndex] || { 
-    array: [], 
-    description: '', 
-    type: 'comparison' 
+  const chartRef = useRef(null);
+
+  const currentStep = animationSteps[currentStepIndex] || {
+    array: [],
+    description: '',
+    type: 'comparison'
   };
-  
+
   const labels = currentStep.array.map((_, index) => `${index}`);
   const values = currentStep.array.map(bar => bar.value);
-  
+
   const backgroundColor = currentStep.array.map(bar => {
     if (bar.isSwapping) return '#10B981';
     if (bar.isComparing) return '#EF4444';
     return '#7C3AED';
   });
-  
+
   const borderColor = currentStep.array.map(bar => {
     if (bar.isSwapping) return '#059669';
     if (bar.isComparing) return '#DC2626';
     return '#6D28D9';
   });
-  
+
   const data = {
     labels,
     datasets: [
@@ -62,7 +62,7 @@ const VisualizationChart: React.FC = () => {
       },
     ],
   };
-  
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -95,7 +95,7 @@ const VisualizationChart: React.FC = () => {
       tooltip: {
         enabled: true,
         callbacks: {
-          label: (context: any) => `Value: ${context.raw}`,
+          label: (context) => `Value: ${context.raw}`,
         },
       },
       datalabels: {
@@ -106,13 +106,13 @@ const VisualizationChart: React.FC = () => {
           weight: 'bold',
           size: 14
         },
-        formatter: (value: number) => value.toString(),
+        formatter: (value) => value.toString(),
         offset: 4,
         padding: 4
       }
     },
   };
-  
+
   return (
     <div className="bg-gray-800 rounded-lg p-4 shadow-lg border border-purple-600 mb-4 h-[400px]">
       <Bar ref={chartRef} data={data} options={options} />

@@ -1,4 +1,3 @@
-import { SortingAlgorithm } from '../../types';
 import { bubbleSortDescription, generateBubbleSortSteps } from './bubbleSort';
 import { selectionSortDescription, generateSelectionSortSteps } from './selectionSort';
 import { mergeSortDescription, generateMergeSortSteps } from './mergeSort';
@@ -6,7 +5,7 @@ import { quickSortDescription, generateQuickSortSteps, quickSortRealWorldUse } f
 import { insertionSortDescription, generateInsertionSortSteps, insertionSortRealWorldUse } from './insertionSort';
 import { heapSortDescription, generateHeapSortSteps, heapSortRealWorldUse } from './heapSort';
 
-export const algorithms: Record<string, SortingAlgorithm> = {
+export const algorithms = {
   bubble: {
     name: 'Bubble Sort',
     description: bubbleSortDescription,
@@ -103,8 +102,8 @@ export const algorithms: Record<string, SortingAlgorithm> = {
 };
 
 // Helper function to generate random array for visualization
-export const generateRandomArray = (size: number, min: number, max: number): number[] => {
-  return Array.from({ length: size }, () => 
+export const generateRandomArray = (size, min, max) => {
+  return Array.from({ length: size }, () =>
     Math.floor(Math.random() * (max - min + 1)) + min
   );
 };

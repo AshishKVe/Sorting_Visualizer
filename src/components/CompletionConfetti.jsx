@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Particles from 'react-tsparticles';
 import { useVisualizer } from '../context/VisualizerContext';
 
-const CompletionConfetti: React.FC = () => {
+const CompletionConfetti = () => {
   const { isSortingComplete } = useVisualizer();
   const [showConfetti, setShowConfetti] = useState(false);
   

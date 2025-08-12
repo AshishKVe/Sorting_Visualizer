@@ -1,92 +1,84 @@
 import React from 'react';
 import { useVisualizer } from '../context/VisualizerContext';
 import { Code2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-interface PseudocodeLine {
-  code: string;
-  indentation: number;
-  highlightConditions: {
-    type: string;
-    descriptions: string[];
-  }[];
-}
-
-const PseudocodeDisplay: React.FC = () => {
+const PseudocodeDisplay = () => {
   const { selectedAlgorithm, animationSteps, currentStepIndex } = useVisualizer();
-  
+
   const currentStep = animationSteps[currentStepIndex];
-  
-  const algorithmPseudocode: Record<string, PseudocodeLine[]> = {
+
+  const algorithmPseudocode = {
     bubble: [
-      { 
-        code: "procedure bubbleSort(array)", 
+      {
+        code: "procedure bubbleSort(array)",
         indentation: 0,
         highlightConditions: [{ type: "start", descriptions: ["Starting Bubble Sort algorithm"] }]
       },
-      { 
-        code: "n = length(array)", 
+      {
+        code: "n = length(array)",
         indentation: 1,
         highlightConditions: [{ type: "start", descriptions: ["Starting Bubble Sort algorithm"] }]
       },
-      { 
-        code: "for i from 0 to n-1", 
+      {
+        code: "for i from 0 to n-1",
         indentation: 1,
         highlightConditions: [{ type: "comparison", descriptions: ["Comparing"] }]
       },
-      { 
-        code: "for j from 0 to n-i-1", 
+      {
+        code: "for j from 0 to n-i-1",
         indentation: 2,
         highlightConditions: [{ type: "comparison", descriptions: ["Comparing"] }]
       },
-      { 
-        code: "if array[j] > array[j+1]", 
+      {
+        code: "if array[j] > array[j+1]",
         indentation: 3,
         highlightConditions: [{ type: "comparison", descriptions: ["Comparing"] }]
       },
-      { 
-        code: "swap(array[j], array[j+1])", 
+      {
+        code: "swap(array[j], array[j+1])",
         indentation: 4,
         highlightConditions: [{ type: "swap", descriptions: ["Swapping", "Swapped"] }]
       }
     ],
     insertion: [
-      { 
-        code: "procedure insertionSort(array)", 
+      {
+        code: "procedure insertionSort(array)",
         indentation: 0,
         highlightConditions: [{ type: "start", descriptions: ["Starting Insertion Sort algorithm"] }]
       },
-      { 
-        code: "for i from 1 to length(array)", 
+      {
+        code: "for i from 1 to length(array)",
         indentation: 1,
         highlightConditions: [{ type: "comparison", descriptions: ["Inserting element"] }]
       },
-      { 
-        code: "key = array[i]", 
+      {
+        code: "key = array[i]",
         indentation: 2,
         highlightConditions: [{ type: "comparison", descriptions: ["Inserting element"] }]
       },
-      { 
-        code: "j = i - 1", 
+      {
+        code: "j = i - 1",
         indentation: 2,
         highlightConditions: [{ type: "comparison", descriptions: ["Comparing"] }]
       },
-      { 
-        code: "while j >= 0 and array[j] > key", 
+      {
+        code: "while j >= 0 and array[j] > key",
         indentation: 2,
         highlightConditions: [{ type: "comparison", descriptions: ["Comparing"] }]
       },
-      { 
-        code: "array[j + 1] = array[j]", 
+      {
+        code: "array[j + 1] = array[j]",
         indentation: 3,
         highlightConditions: [{ type: "swap", descriptions: ["Swapping", "Swapped"] }]
       },
-      { 
-        code: "j = j - 1", 
+      {
+        code: "j = j - 1",
         indentation: 3,
         highlightConditions: [{ type: "swap", descriptions: ["Swapping", "Swapped"] }]
       },
-      { 
-        code: "array[j + 1] = key", 
+      {
+        code: "array[j + 1] = key",
         indentation: 2,
         highlightConditions: [{ type: "swap", descriptions: ["Swapping", "Swapped"] }]
       }
@@ -370,35 +362,40 @@ const PseudocodeDisplay: React.FC = () => {
       }
     ]
   };
-
-  const isLineHighlighted = (line: PseudocodeLine): boolean => {
+  
+  const isLineHighlighted = (line) => {
     if (!currentStep) return false;
-    
-    return line.highlightConditions.some(condition => 
+    return line.highlightConditions.some(condition =>
       condition.type === currentStep.type &&
-      condition.descriptions.some(desc => 
+      condition.descriptions.some(desc =>
         currentStep.description.toLowerCase().includes(desc.toLowerCase())
       )
     );
   };
-
+  
   return (
-    <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-purple-600/30 h-[calc(100vh-8rem)] overflow-hidden flex flex-col">
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-gray-800/80 backdrop-blur-md rounded-lg shadow-2xl border border-purple-600/50 p-6 flex flex-col min-h-0 h-auto" // Adjusted height here
+    >
       <div className="flex items-center gap-2 mb-4">
-        <Code2 className="text-purple-400" size={20} />
-        <h3 className="text-xl font-orbitron text-purple-400">Pseudocode</h3>
+        <Code2 className="text-purple-400" size={24} />
+        <h3 className="text-2xl font-orbitron text-purple-400">Pseudocode</h3>
       </div>
-      
+  
       <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-600 scrollbar-track-gray-800">
-        <div className="font-fira-code text-sm">
+        <div className="font-fira-code text-base">
           {algorithmPseudocode[selectedAlgorithm]?.map((line, index) => (
             <div
               key={index}
-              className={`py-1.5 px-4 rounded transition-colors duration-300 ${
-                isLineHighlighted(line)
-                  ? 'bg-purple-600/20 text-white font-medium' 
-                  : 'text-gray-400'
-              }`}
+              className={`py-2 px-4 rounded transition-all duration-300 relative
+                ${
+                  isLineHighlighted(line)
+                    ? 'bg-purple-600/20 text-white font-medium shadow-lg'
+                    : 'text-gray-400 hover:bg-gray-700/50'
+                }`}
               style={{ paddingLeft: `${line.indentation * 1.5}rem` }}
             >
               {line.code}
@@ -406,8 +403,8 @@ const PseudocodeDisplay: React.FC = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
-
+  
 export default PseudocodeDisplay;

@@ -4,7 +4,7 @@ import { Clock, Box, Cpu, Database, Check, X } from 'lucide-react';
 import { algorithms } from '../utils/algorithms';
 import { useVisualizer } from '../context/VisualizerContext';
 
-const AlgorithmInfo: React.FC = () => {
+const AlgorithmInfo = () => {
   const { selectedAlgorithm } = useVisualizer();
   const algorithm = algorithms[selectedAlgorithm];
 

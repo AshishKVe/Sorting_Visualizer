@@ -7,11 +7,11 @@ import '@fontsource/orbitron';
 import '@fontsource/inter';
 
 // Main app container
-const AppContent: React.FC = () => {
+const AppContent = () => {
   const { currentView } = useVisualizer();
-  
+
   return (
-    <div className="font-inter bg-gray-900 min-h-screen text-white">
+    <div className="font-inter bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen text-white">
       {currentView === 'menu' && <MainMenu />}
       {currentView === 'visualization' && <VisualizationScreen />}
       {currentView === 'learn' && <LearnMoreScreen />}
@@ -20,7 +20,7 @@ const AppContent: React.FC = () => {
 };
 
 // Root component with provider
-const App: React.FC = () => {
+const App = () => {
   return (
     <VisualizerProvider>
       <AppContent />
