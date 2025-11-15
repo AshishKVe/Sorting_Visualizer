@@ -34,7 +34,7 @@ export const generateInsertionSortSteps = (inputArray) => {
 
   // Initial state
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Starting Insertion Sort algorithm",
     type: "comparison"
   });
@@ -46,7 +46,7 @@ export const generateInsertionSortSteps = (inputArray) => {
     // Mark current element being inserted
     array[i].isComparing = true;
     steps.push({
-      array: JSON.parse(JSON.stringify(array)),
+      array: array.map(item => ({ ...item })),
       description: `Inserting element ${array[i].value}`,
       type: "comparison"
     });
@@ -57,7 +57,7 @@ export const generateInsertionSortSteps = (inputArray) => {
       array[j - 1].isComparing = true;
 
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Comparing ${array[j].value} with ${array[j - 1].value}`,
         type: "comparison"
       });
@@ -67,7 +67,7 @@ export const generateInsertionSortSteps = (inputArray) => {
       array[j - 1].isSwapping = true;
 
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Swapping ${array[j].value} and ${array[j - 1].value}`,
         type: "swap"
       });
@@ -92,7 +92,7 @@ export const generateInsertionSortSteps = (inputArray) => {
 
   // Final state - mark as complete
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Array is now sorted!",
     type: "complete"
   });

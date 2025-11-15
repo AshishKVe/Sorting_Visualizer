@@ -48,7 +48,7 @@ const heapify = (
     array[left].isComparing = true;
 
     steps.push({
-      array: JSON.parse(JSON.stringify(array)),
+      array: array.map(item => ({ ...item })),
       description: `Comparing ${array[largest].value} with left child ${array[left].value}`,
       type: "comparison"
     });
@@ -67,7 +67,7 @@ const heapify = (
     array[right].isComparing = true;
 
     steps.push({
-      array: JSON.parse(JSON.stringify(array)),
+      array: array.map(item => ({ ...item })),
       description: `Comparing ${array[largest].value} with right child ${array[right].value}`,
       type: "comparison"
     });
@@ -86,7 +86,7 @@ const heapify = (
     array[largest].isSwapping = true;
 
     steps.push({
-      array: JSON.parse(JSON.stringify(array)),
+      array: array.map(item => ({ ...item })),
       description: `Swapping ${array[i].value} with ${array[largest].value}`,
       type: "swap"
     });
@@ -97,7 +97,7 @@ const heapify = (
     array[largest].value = temp;
 
     steps.push({
-      array: JSON.parse(JSON.stringify(array)),
+      array: array.map(item => ({ ...item })),
       description: `Swapped ${array[largest].value} with ${array[i].value}`,
       type: "swap"
     });
@@ -121,7 +121,7 @@ export const generateHeapSortSteps = (inputArray) => {
 
   // Initial state
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Starting Heap Sort algorithm",
     type: "comparison"
   });
@@ -130,7 +130,7 @@ export const generateHeapSortSteps = (inputArray) => {
 
   // Build max heap
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Building max heap",
     type: "comparison"
   });
@@ -146,7 +146,7 @@ export const generateHeapSortSteps = (inputArray) => {
     array[i].isSwapping = true;
 
     steps.push({
-      array: JSON.parse(JSON.stringify(array)),
+      array: array.map(item => ({ ...item })),
       description: `Moving root element ${array[0].value} to position ${i}`,
       type: "swap"
     });
@@ -164,7 +164,7 @@ export const generateHeapSortSteps = (inputArray) => {
 
   // Final state - mark as complete
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Array is now sorted!",
     type: "complete"
   });

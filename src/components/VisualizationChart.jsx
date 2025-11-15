@@ -67,7 +67,7 @@ const VisualizationChart = () => {
     responsive: true,
     maintainAspectRatio: false,
     animation: {
-      duration: 300,
+      duration: 0,
     },
     scales: {
       y: {

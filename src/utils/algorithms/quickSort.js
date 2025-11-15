@@ -35,7 +35,7 @@ export const generateQuickSortSteps = (inputArray) => {
   }));
 
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Starting Quick Sort algorithm",
     type: "comparison"
   });
@@ -45,7 +45,7 @@ export const generateQuickSortSteps = (inputArray) => {
     array[high].isPivot = true;
 
     steps.push({
-      array: JSON.parse(JSON.stringify(array)),
+      array: array.map(item => ({ ...item })),
       description: `Selected pivot: ${pivot}`,
       type: "partition",
       pivotIndex: high
@@ -57,7 +57,7 @@ export const generateQuickSortSteps = (inputArray) => {
       array[j].isComparing = true;
 
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Comparing ${array[j].value} with pivot ${pivot}`,
         type: "comparison",
         comparingIndices: [j, high]
@@ -71,7 +71,7 @@ export const generateQuickSortSteps = (inputArray) => {
           array[j].isSwapping = true;
 
           steps.push({
-            array: JSON.parse(JSON.stringify(array)),
+            array: array.map(item => ({ ...item })),
             description: `Swapping ${array[i].value} and ${array[j].value}`,
             type: "swap",
             swappingIndices: [i, j]
@@ -96,7 +96,7 @@ export const generateQuickSortSteps = (inputArray) => {
       array[high].isSwapping = true;
 
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Moving pivot ${pivot} to its correct position`,
         type: "swap",
         swappingIndices: [i + 1, high]
@@ -119,7 +119,7 @@ export const generateQuickSortSteps = (inputArray) => {
 
       array[pi].isSorted = true;
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Element ${array[pi].value} is now in its correct position`,
         type: "partition"
       });
@@ -138,7 +138,7 @@ export const generateQuickSortSteps = (inputArray) => {
   });
 
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Array is now sorted!",
     type: "complete"
   });

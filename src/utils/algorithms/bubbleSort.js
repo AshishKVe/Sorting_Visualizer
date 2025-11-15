@@ -22,7 +22,7 @@ export const generateBubbleSortSteps = (inputArray) => {
 
   // Initial state
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Starting Bubble Sort algorithm",
     type: "comparison"
   });
@@ -45,7 +45,7 @@ export const generateBubbleSortSteps = (inputArray) => {
 
       // Add comparison step
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Comparing ${array[j].value} and ${array[j + 1].value}`,
         type: "comparison"
       });
@@ -57,7 +57,7 @@ export const generateBubbleSortSteps = (inputArray) => {
 
         // Add pre-swap step
         steps.push({
-          array: JSON.parse(JSON.stringify(array)),
+          array: array.map(item => ({ ...item })),
           description: `Swapping ${array[j].value} and ${array[j + 1].value}`,
           type: "swap"
         });
@@ -69,7 +69,7 @@ export const generateBubbleSortSteps = (inputArray) => {
 
         // Add post-swap step
         steps.push({
-          array: JSON.parse(JSON.stringify(array)),
+          array: array.map(item => ({ ...item })),
           description: `Swapped ${array[j + 1].value} and ${array[j].value}`,
           type: "swap"
         });
@@ -96,7 +96,7 @@ export const generateBubbleSortSteps = (inputArray) => {
   });
 
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Array is now sorted!",
     type: "complete"
   });

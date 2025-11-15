@@ -28,7 +28,7 @@ export const generateMergeSortSteps = (inputArray) => {
 
   // Initial state
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Starting Merge Sort algorithm",
     type: "comparison"
   });
@@ -39,7 +39,7 @@ export const generateMergeSortSteps = (inputArray) => {
 
   // Simulating the divide phase
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Dividing the array into smaller subarrays",
     type: "comparison"
   });
@@ -66,7 +66,7 @@ export const generateMergeSortSteps = (inputArray) => {
       }
 
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Merging subarrays [${left}...${mid}] and [${right}...${rightEnd}]`,
         type: "comparison"
       });
@@ -87,7 +87,7 @@ export const generateMergeSortSteps = (inputArray) => {
         array[j].isComparing = true;
 
         steps.push({
-          array: JSON.parse(JSON.stringify(array)),
+          array: array.map(item => ({ ...item })),
           description: `Comparing ${array[i].value} and ${array[j].value}`,
           type: "comparison"
         });
@@ -123,7 +123,7 @@ export const generateMergeSortSteps = (inputArray) => {
       }
 
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Merged subarray from [${left}] to [${rightEnd}]`,
         type: "swap"
       });
@@ -137,7 +137,7 @@ export const generateMergeSortSteps = (inputArray) => {
 
   // Final state - mark as complete
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Array is now sorted!",
     type: "complete"
   });

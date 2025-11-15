@@ -23,7 +23,7 @@ export const generateSelectionSortSteps = (inputArray) => {
 
   // Initial state
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Starting Selection Sort algorithm",
     type: "comparison"
   });
@@ -46,7 +46,7 @@ export const generateSelectionSortSteps = (inputArray) => {
       array[j].isComparing = true;
 
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Comparing current minimum ${array[minIndex].value} with ${array[j].value}`,
         type: "comparison"
       });
@@ -57,7 +57,7 @@ export const generateSelectionSortSteps = (inputArray) => {
         array[minIndex].isComparing = true;
 
         steps.push({
-          array: JSON.parse(JSON.stringify(array)),
+          array: array.map(item => ({ ...item })),
           description: `Found new minimum: ${array[minIndex].value}`,
           type: "comparison"
         });
@@ -76,7 +76,7 @@ export const generateSelectionSortSteps = (inputArray) => {
       array[minIndex].isSwapping = true;
 
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Swapping ${array[i].value} and ${array[minIndex].value}`,
         type: "swap"
       });
@@ -88,7 +88,7 @@ export const generateSelectionSortSteps = (inputArray) => {
 
       // Add post-swap step
       steps.push({
-        array: JSON.parse(JSON.stringify(array)),
+        array: array.map(item => ({ ...item })),
         description: `Swapped ${array[minIndex].value} and ${array[i].value}`,
         type: "swap"
       });
@@ -101,7 +101,7 @@ export const generateSelectionSortSteps = (inputArray) => {
 
   // Final state - mark as complete
   steps.push({
-    array: JSON.parse(JSON.stringify(array)),
+    array: array.map(item => ({ ...item })),
     description: "Array is now sorted!",
     type: "complete"
   });
