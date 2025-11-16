@@ -22,22 +22,22 @@ const VisualizationScreen = () => {
           {algorithm.name} Visualization
         </h2>
 
-        <div className="flex flex-col lg:flex-row gap-8 items-start w-full">
+        <div className="flex flex-col md:flex-row gap-8 items-start w-full">
           
         
-          <div className="w-full lg:w-[350px] flex-shrink-0">
+          <div className="w-full md:w-[350px] flex-shrink-0">
             <PseudocodeDisplay />
           </div>
 
           
-          <div className="w-full lg:flex-1 space-y-4 min-w-0">
+          <div className="w-full md:flex-1 space-y-4 min-w-0">
             <InfoBox />
             <VisualizationChart />
             <ControlPanel />
           </div>
 
         
-          <div className="w-full lg:w-[350px] flex-shrink-0">
+          <div className="w-full md:w-[350px] flex-shrink-0">
             <AlgorithmInfo />
           </div>
 
